@@ -31,7 +31,7 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
  */
 
 plugins {
-	val kotlinVersion = "1.9.20-RC2"
+	val kotlinVersion = "2.0.0"
 	id("org.jetbrains.kotlin.jvm") version kotlinVersion
 	id("org.jetbrains.kotlin.kapt") version kotlinVersion
 	signing
@@ -40,7 +40,7 @@ plugins {
 
 val webpGroupId = "me.saro"
 val webpArtifactId = "webp"
-val webpVersion = "1.0.0"
+val webpVersion = "1.4.0.0"
 
 
 configure<JavaPluginExtension> {
@@ -58,10 +58,6 @@ java {
 }
 
 dependencies {
-
-	// jackson
-	implementation("com.fasterxml.jackson.module:jackson-module-kotlin:2.15.3")
-
 	// test
 	testImplementation("org.junit.jupiter:junit-jupiter-api:+")
 	testImplementation("org.junit.jupiter:junit-jupiter-engine:+")
