@@ -25,10 +25,13 @@ class Webp(
     }
 
     fun toWebp(binPath: String, options: List<String>) {
+
+        println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
+        println("convert webp: $binPath ${options.joinToString(" ")}")
         val process = ProcessBuilder(binPath, *options.toTypedArray())
             .redirectErrorStream(true)
             .start()
-        val message = process.inputStream.use { it.readAllBytes().decodeToString() }.trim()
+        val message = process.inputStream.use { String(it.readAllBytes()) }.trim()
         if (process.waitFor() != 0) {
             throw WebpException("failed to convert webp: \n$message")
         }
