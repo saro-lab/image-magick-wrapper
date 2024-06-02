@@ -58,9 +58,6 @@ java {
 }
 
 dependencies {
-	implementation("com.fasterxml.jackson.core:jackson-databind:2.17.0")
-	implementation("com.fasterxml.jackson.dataformat:jackson-dataformat-yaml:2.17.0")
-
 	// test
 	testImplementation("org.junit.jupiter:junit-jupiter-api:+")
 	testImplementation("org.junit.jupiter:junit-jupiter-engine:+")
