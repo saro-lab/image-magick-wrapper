@@ -7,6 +7,7 @@ import org.junit.jupiter.api.Test;
 
 import java.io.File;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 
@@ -21,6 +22,12 @@ public class ImageInfoTest {
         var info = ImageMagick.create().getImageInfo(new File(root,"example.gif"));
         System.out.println(info);
         assertTrue(info.isSuccess());
+        var data = info.getData();
+        assertEquals(data.size(), 31);
+        var first = data.get(0);
+        assertEquals(first.getWidth(), 600);
+        assertEquals(first.getHeight(), 600);
+        assertEquals(first.getFormat(), "GIF");
     }
 
     @Test
@@ -29,6 +36,10 @@ public class ImageInfoTest {
         var info = ImageMagick.create().getImageInfo(new File(root,"example.jpg"));
         System.out.println(info);
         assertTrue(info.isSuccess());
+        var first = info.getData().get(0);
+        assertEquals(first.getWidth(), 763);
+        assertEquals(first.getHeight(), 600);
+        assertEquals(first.getFormat(), "JPEG");
     }
 
     @Test
@@ -37,6 +48,10 @@ public class ImageInfoTest {
         var info = ImageMagick.create().getImageInfo(new File(root,"example.png"));
         System.out.println(info);
         assertTrue(info.isSuccess());
+        var first = info.getData().get(0);
+        assertEquals(first.getWidth(), 800);
+        assertEquals(first.getHeight(), 600);
+        assertEquals(first.getFormat(), "PNG");
     }
 
     @BeforeEach

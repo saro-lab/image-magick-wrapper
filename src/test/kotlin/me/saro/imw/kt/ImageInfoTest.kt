@@ -7,9 +7,9 @@ import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
 import java.io.File
 
-@DisplayName("[Kotlin] ImageMagick Image Info Test")
+@DisplayName("[Koltin] ImageMagick Image Info Test")
 class ImageInfoTest {
-    var root: File = File("")
+    var root: File? = null
 
     @Test
     @DisplayName("image info: example.gif")
@@ -18,6 +18,12 @@ class ImageInfoTest {
         val info = create().getImageInfo(File(root, "example.gif"))
         println(info)
         Assertions.assertTrue(info.isSuccess)
+        val data = info.data!!
+        Assertions.assertEquals(data.size, 31)
+        val first = data[0]
+        Assertions.assertEquals(first.width, 600)
+        Assertions.assertEquals(first.height, 600)
+        Assertions.assertEquals(first.format, "GIF")
     }
 
     @Test
@@ -27,6 +33,10 @@ class ImageInfoTest {
         val info = create().getImageInfo(File(root, "example.jpg"))
         println(info)
         Assertions.assertTrue(info.isSuccess)
+        val first = info.data!![0]
+        Assertions.assertEquals(first.width, 763)
+        Assertions.assertEquals(first.height, 600)
+        Assertions.assertEquals(first.format, "JPEG")
     }
 
     @Test
@@ -36,10 +46,14 @@ class ImageInfoTest {
         val info = create().getImageInfo(File(root, "example.png"))
         println(info)
         Assertions.assertTrue(info.isSuccess)
+        val first = info.data!![0]
+        Assertions.assertEquals(first.width, 800)
+        Assertions.assertEquals(first.height, 600)
+        Assertions.assertEquals(first.format, "PNG")
     }
 
     @BeforeEach
-    fun bindPath(): Unit {
+    fun bindPath() {
         try {
             root = File(ImageInfoTest::class.java.classLoader.getResource("images").toURI())
         } catch (e: Exception) {

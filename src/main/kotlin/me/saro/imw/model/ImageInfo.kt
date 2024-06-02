@@ -17,5 +17,4 @@ data class ImageInfo private constructor(
     val size = map["size"] as String
     val width = size.split("x")[0].toInt()
     val height = size.split("x")[1].toInt()
-    val depth = map["depth"] as String
 }

@@ -1,5 +1,6 @@
 package me.saro.imw
 
+import me.saro.imw.ImageMagick.Companion.manual
 import me.saro.imw.comm.ImageMagickException
 import me.saro.imw.comm.ImageMagickResult
 import me.saro.imw.model.ImageInfo
@@ -31,19 +32,49 @@ class ImageMagick private constructor(
             }
     }
 
-    private val options: List<String> = optionMap.entries.flatMap { listOf(it.key, it.value) }
+    private val options get(): List<String> = optionMap.entries.flatMap {
+        when (it.key) {
+            "-resize" -> {
+                listOf("-coalesce", it.key, it.value, "-layers", "Optimize")
+            }
+            "webpCompression" -> {
+                listOf(
+                    "-define", "webp:compression-level=9",
+                    "-define", "webp:method=6",
+                )
+            }
+            else -> {
+                listOf(it.key, it.value)
+            }
+        }
+    }.filter { it.isNotBlank() }
 
     fun resize(width: Int, height: Int): ImageMagick {
         if (width <= 0 || height <= 0) throw ImageMagickException("width and height must be greater than 0")
-        optionMap["-resize"] = "${width}x${height}";
+        optionMap["-resize"] = "${width}x${height}"
         return this
     }
 
-    fun execute(input: File, output: File) {
-        manual(binPath, listOf(input.absolutePath, *options.toTypedArray(), output.absolutePath))
+    fun quality(quality: Int): ImageMagick {
+        if (quality < 0 || quality > 100) throw ImageMagickException("quality must be between 0 and 100")
+        optionMap["-quality"] = quality.toString()
+        return this
     }
 
+    fun webpCompression(): ImageMagick {
+        optionMap["webpCompression"] = ""
+        return this
+    }
+
+    fun convert(input: File, output: File): ImageMagickResult<String> {
+        println("옵션")
+        println(listOf(input.absolutePath, *options.toTypedArray(), output.absolutePath))
+        return manual(binPath, listOf(input.absolutePath, *options.toTypedArray(), output.absolutePath))
+    }
+
+    
+
     fun getImageInfo(input: File): ImageMagickResult<List<ImageInfo>> =
-        manual(binPath, listOf("identify", "-format", "%p %m %P %z\\n", input.absolutePath))
-            .map { ImageInfo.create(it, listOf("frameIndex", "format", "size", "depth")) }
+        manual(binPath, listOf("identify", "-format", "%p %m %P\\n", input.absolutePath))
+            .map { ImageInfo.create(it, listOf("frameIndex", "format", "size")) }
 }
