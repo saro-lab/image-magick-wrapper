@@ -1,6 +1,6 @@
-package me.saro.imw
+package me.saro.imw.comm
 
-class WebpException: RuntimeException {
+class ImageMagickException: RuntimeException {
     constructor(message: String): super(message)
     constructor(message: String, cause: Throwable): super(message, cause)
     constructor(cause: Throwable): super(cause)

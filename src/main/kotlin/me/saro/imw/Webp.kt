@@ -1,5 +1,6 @@
 package me.saro.imw
 
+import me.saro.imw.comm.ImageMagickException
 import java.io.File
 
 class Webp(
@@ -33,7 +34,7 @@ class Webp(
             .start()
         val message = process.inputStream.use { String(it.readAllBytes()) }.trim()
         if (process.waitFor() != 0) {
-            throw WebpException("failed to convert webp: \n$message")
+            throw ImageMagickException("failed to convert webp: \n$message")
         }
     }
 }

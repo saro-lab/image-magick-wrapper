@@ -1,5 +1,7 @@
 package me.saro.imw
 
+import me.saro.imw.comm.ImageMagickException
+
 class WebpOptions(
     val fromPath: String,
     val toPath: String,
@@ -19,20 +21,20 @@ class WebpOptions(
 
     fun format(format: String): WebpOptions {
         if (format.lowercase() !in setOf("gif", "png", "jpg", "jpeg", "tiff", "webp")) {
-            throw WebpException("not supported format: $format\nhttps://developers.google.com/speed/webp/docs/cwebp")
+            throw ImageMagickException("not supported format: $format\nhttps://developers.google.com/speed/webp/docs/cwebp")
         }
         this.format = format.lowercase()
         return this
     }
 
     fun compression(compression: Int): WebpOptions {
-        compression.takeIf { it in 0..6 } ?: throw WebpException("compression must be 0 to 6 (0=fast, 6=slowest)")
+        compression.takeIf { it in 0..6 } ?: throw ImageMagickException("compression must be 0 to 6 (0=fast, 6=slowest)")
         options["-m"] = compression.toString()
         return this
     }
 
     fun quality(quality: Int): WebpOptions {
-        quality.takeIf { it in 0..100 } ?: throw WebpException("quality must be 0 to 100")
+        quality.takeIf { it in 0..100 } ?: throw ImageMagickException("quality must be 0 to 100")
         options["-q"] = quality.toString()
         return this
     }
@@ -61,7 +63,7 @@ class WebpOptions(
     // gif -> webp -(resize, crop...)-> webp
     fun getTwoPassOptions(): List<WebpOptions> {
         if (!useCWebpOptionInGif) {
-            throw WebpException("not supported options: $this")
+            throw ImageMagickException("not supported options: $this")
         }
         val midPath = "$toPath.me.saro.webp.2pass.temp.webp"
         return listOf(
