@@ -38,9 +38,9 @@ plugins {
 	`maven-publish`
 }
 
-val webpGroupId = "me.saro"
-val webpArtifactId = "webp"
-val webpVersion = "1.4.0.0"
+val imageMagickGroupId = "me.saro"
+val imageMagickArtifactId = "image-magick-wrapper"
+val imageMagickVersion = "1.0.0"
 
 
 configure<JavaPluginExtension> {
@@ -71,9 +71,9 @@ publishing {
 	publications {
 		create<MavenPublication>("maven") {
 
-			groupId = webpGroupId
-			artifactId = webpArtifactId
-			version = webpVersion
+			groupId = imageMagickGroupId
+			artifactId = imageMagickArtifactId
+			version = imageMagickVersion
 
 			from(components["java"])
 
@@ -94,8 +94,8 @@ publishing {
 			}
 
 			pom {
-				name.set("SARO WebP")
-				description.set("SARO WebP")
+				name.set("SARO Image Magick Wrapper")
+				description.set("Image Magick Wrapper")
 				url.set("https://saro.me")
 
 				licenses {
@@ -111,9 +111,9 @@ publishing {
 					}
 				}
 				scm {
-					connection.set("scm:git:git://github.com/saro-lab/webp.git")
-					developerConnection.set("scm:git:git@github.com:saro-lab/webp.git")
-					url.set("https://github.com/saro-lab/webp")
+					connection.set("scm:git:git://github.com/saro-lab/image-magick-wrapper.git")
+					developerConnection.set("scm:git:git@github.com:saro-lab/image-magick-wrapper.git")
+					url.set("https://github.com/saro-lab/image-magick-wrapper")
 				}
 			}
 		}

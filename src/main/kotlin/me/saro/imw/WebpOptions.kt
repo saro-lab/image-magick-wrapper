@@ -1,4 +1,4 @@
-package me.saro.webp
+package me.saro.imw
 
 class WebpOptions(
     val fromPath: String,

@@ -1,4 +1,4 @@
-package me.saro.webp
+package me.saro.imw
 
 import java.io.File
 import java.net.URI

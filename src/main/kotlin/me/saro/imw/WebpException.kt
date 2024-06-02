@@ -1,4 +1,4 @@
-package me.saro.webp
+package me.saro.imw
 
 class WebpException: RuntimeException {
     constructor(message: String): super(message)

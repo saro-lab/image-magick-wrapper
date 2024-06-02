@@ -1,11 +1,9 @@
-package me.saro.webp.jt;
+package me.saro.imw.jt;
 
-import me.saro.webp.Webp;
-import me.saro.webp.WebpOptions;
+import me.saro.imw.Webp;
+import me.saro.imw.WebpOptions;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-
-import java.io.File;
 
 public class ToWebpTest {
     Webp webp = new Webp();
