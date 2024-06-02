@@ -1,6 +1,5 @@
 package me.saro.imw
 
-import me.saro.imw.ImageMagick.Companion.manual
 import me.saro.imw.comm.ImageMagickException
 import me.saro.imw.comm.ImageMagickResult
 import me.saro.imw.model.ImageInfo
@@ -71,8 +70,6 @@ class ImageMagick private constructor(
         println(listOf(input.absolutePath, *options.toTypedArray(), output.absolutePath))
         return manual(binPath, listOf(input.absolutePath, *options.toTypedArray(), output.absolutePath))
     }
-
-    
 
     fun getImageInfo(input: File): ImageMagickResult<List<ImageInfo>> =
         manual(binPath, listOf("identify", "-format", "%p %m %P\\n", input.absolutePath))
