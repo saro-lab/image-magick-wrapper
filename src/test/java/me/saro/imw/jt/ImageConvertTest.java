@@ -19,11 +19,15 @@ public class ImageConvertTest {
     @Test
     @DisplayName("image info: example.gif")
     public void imageInfoGif() throws Exception {
-        var info = ImageMagick.create().convert(new File(root,"example.gif"), new File(tmp, "example-gif.webp"));
+        var info = ImageMagick.create()
+                .convert(new File(root,"example.gif"), new File(tmp, "example-gif.webp"));
         System.out.println(info);
         assertTrue(info.isSuccess());
 
-        info = ImageMagick.create().resize(120, 120).webpCompression().convert(new File(root,"example.gif"), new File(tmp, "example-resize-gif.webp"));
+        info = ImageMagick.create()
+                .resize(120, 120)
+                .webpCompression()
+                .convert(new File(root,"example.gif"), new File(tmp, "example-resize-gif.webp"));
         System.out.println(info);
         assertTrue(info.isSuccess());
     }
@@ -31,11 +35,15 @@ public class ImageConvertTest {
     @Test
     @DisplayName("image info: example.jpg")
     public void imageInfoJpg() throws Exception {
-        var info = ImageMagick.create().convert(new File(root,"example.jpg"), new File(tmp, "example-jpg.webp"));
+        var info = ImageMagick.create()
+                .convert(new File(root,"example.jpg"), new File(tmp, "example-jpg.webp"));
         System.out.println(info);
         assertTrue(info.isSuccess());
 
-        info = ImageMagick.create().resize(120, 120).webpCompression().convert(new File(root,"example.jpg"), new File(tmp, "example-resize-jpg.webp"));
+        info = ImageMagick.create()
+                .resize(120, 120)
+                .webpCompression()
+                .convert(new File(root,"example.jpg"), new File(tmp, "example-resize-jpg.webp"));
         System.out.println(info);
         assertTrue(info.isSuccess());
     }
@@ -43,11 +51,15 @@ public class ImageConvertTest {
     @Test
     @DisplayName("image info: example.png")
     public void imageInfoPng() throws Exception {
-        var info = ImageMagick.create().convert(new File(root,"example.png"), new File(tmp, "example-png.webp"));
+        var info = ImageMagick.create()
+                .convert(new File(root,"example.png"), new File(tmp, "example-png.webp"));
         System.out.println(info);
         assertTrue(info.isSuccess());
 
-        info = ImageMagick.create().resize(120, 120).webpCompression().convert(new File(root,"example.png"), new File(tmp, "example-resize-png.webp"));
+        info = ImageMagick.create()
+                .resize(120, 120)
+                .webpCompression()
+                .convert(new File(root,"example.png"), new File(tmp, "example-resize-png.webp"));
         System.out.println(info);
         assertTrue(info.isSuccess());
     }

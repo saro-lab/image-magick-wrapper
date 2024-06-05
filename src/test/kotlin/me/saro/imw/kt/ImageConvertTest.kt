@@ -1,6 +1,6 @@
 package me.saro.imw.kt
 
-import me.saro.imw.ImageMagick.Companion.create
+import me.saro.imw.ImageMagick
 import me.saro.imw.comm.ImageMagickResult
 import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.BeforeEach
@@ -18,11 +18,11 @@ class ImageConvertTest {
     @Throws(Exception::class)
     fun imageInfoGif() {
         var info: ImageMagickResult<String> =
-            create().convert(File(root, "example.gif"), File(tmp, "example-gif.webp"))
+            ImageMagick.create().convert(File(root, "example.gif"), File(tmp, "example-gif.webp"))
         println(info)
         Assertions.assertTrue(info.isSuccess)
 
-        info = create().resize(120, 120).webpCompression()
+        info = ImageMagick.create().resize(120, 120).webpCompression()
             .convert(File(root, "example.gif"), File(tmp, "example-resize-gif.webp"))
         println(info)
         Assertions.assertTrue(info.isSuccess)
@@ -33,11 +33,11 @@ class ImageConvertTest {
     @Throws(Exception::class)
     fun imageInfoJpg() {
         var info: ImageMagickResult<String> =
-            create().convert(File(root, "example.jpg"), File(tmp, "example-jpg.webp"))
+            ImageMagick.create().convert(File(root, "example.jpg"), File(tmp, "example-jpg.webp"))
         println(info)
         Assertions.assertTrue(info.isSuccess)
 
-        info = create().resize(120, 120).webpCompression()
+        info = ImageMagick.create().resize(120, 120).webpCompression()
             .convert(File(root, "example.jpg"), File(tmp, "example-resize-jpg.webp"))
         println(info)
         Assertions.assertTrue(info.isSuccess)
@@ -48,11 +48,11 @@ class ImageConvertTest {
     @Throws(Exception::class)
     fun imageInfoPng() {
         var info: ImageMagickResult<String> =
-            create().convert(File(root, "example.png"), File(tmp, "example-png.webp"))
+            ImageMagick.create().convert(File(root, "example.png"), File(tmp, "example-png.webp"))
         println(info)
         Assertions.assertTrue(info.isSuccess)
 
-        info = create().resize(120, 120).webpCompression()
+        info = ImageMagick.create().resize(120, 120).webpCompression()
             .convert(File(root, "example.png"), File(tmp, "example-resize-png.webp"))
         println(info)
         Assertions.assertTrue(info.isSuccess)

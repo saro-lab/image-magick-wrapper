@@ -1,6 +1,6 @@
 package me.saro.imw.kt
 
-import me.saro.imw.ImageMagick.Companion.create
+import me.saro.imw.ImageMagick
 import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.DisplayName
@@ -15,7 +15,7 @@ class ImageInfoTest {
     @DisplayName("image info: example.gif")
     @Throws(Exception::class)
     fun imageInfoGif() {
-        val info = create().getImageInfo(File(root, "example.gif"))
+        val info = ImageMagick.create().getImageInfo(File(root, "example.gif"))
         println(info)
         Assertions.assertTrue(info.isSuccess)
         val data = info.data!!
@@ -30,7 +30,7 @@ class ImageInfoTest {
     @DisplayName("image info: example.jpg")
     @Throws(Exception::class)
     fun imageInfoJpg() {
-        val info = create().getImageInfo(File(root, "example.jpg"))
+        val info = ImageMagick.create().getImageInfo(File(root, "example.jpg"))
         println(info)
         Assertions.assertTrue(info.isSuccess)
         val first = info.data!![0]
@@ -43,7 +43,7 @@ class ImageInfoTest {
     @DisplayName("image info: example.png")
     @Throws(Exception::class)
     fun imageInfoPng() {
-        val info = create().getImageInfo(File(root, "example.png"))
+        val info = ImageMagick.create().getImageInfo(File(root, "example.png"))
         println(info)
         Assertions.assertTrue(info.isSuccess)
         val first = info.data!![0]

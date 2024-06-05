@@ -19,7 +19,8 @@ public class ImageInfoTest {
     @Test
     @DisplayName("image info: example.gif")
     public void imageInfoGif() throws Exception {
-        var info = ImageMagick.create().getImageInfo(new File(root,"example.gif"));
+        var info = ImageMagick.create()
+                .getImageInfo(new File(root,"example.gif"));
         System.out.println(info);
         assertTrue(info.isSuccess());
         var data = info.getData();
@@ -33,7 +34,8 @@ public class ImageInfoTest {
     @Test
     @DisplayName("image info: example.jpg")
     public void imageInfoJpg() throws Exception {
-        var info = ImageMagick.create().getImageInfo(new File(root,"example.jpg"));
+        var info = ImageMagick.create()
+                .getImageInfo(new File(root,"example.jpg"));
         System.out.println(info);
         assertTrue(info.isSuccess());
         var first = info.getData().get(0);
@@ -45,7 +47,8 @@ public class ImageInfoTest {
     @Test
     @DisplayName("image info: example.png")
     public void imageInfoPng() throws Exception {
-        var info = ImageMagick.create().getImageInfo(new File(root,"example.png"));
+        var info = ImageMagick.create()
+                .getImageInfo(new File(root,"example.png"));
         System.out.println(info);
         assertTrue(info.isSuccess());
         var first = info.getData().get(0);
