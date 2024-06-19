@@ -33,7 +33,6 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 plugins {
 	val kotlinVersion = "2.0.0"
 	id("org.jetbrains.kotlin.jvm") version kotlinVersion
-	id("org.jetbrains.kotlin.kapt") version kotlinVersion
 	signing
 	`maven-publish`
 }
@@ -42,11 +41,6 @@ val imageMagickGroupId = "me.saro"
 val imageMagickArtifactId = "image-magick-wrapper"
 val imageMagickVersion = "1.0.0"
 
-
-configure<JavaPluginExtension> {
-	sourceCompatibility = JavaVersion.VERSION_21
-	targetCompatibility = JavaVersion.VERSION_21
-}
 
 repositories {
 	mavenCentral()
@@ -59,8 +53,8 @@ java {
 
 dependencies {
 	// test
-	testImplementation("org.junit.jupiter:junit-jupiter-api:+")
-	testImplementation("org.junit.jupiter:junit-jupiter-engine:+")
+	testImplementation("org.junit.jupiter:junit-jupiter:5.10.2")
+	testRuntimeOnly("org.junit.platform:junit-platform-launcher")
 }
 
 tasks.withType<Test> {
@@ -131,13 +125,7 @@ tasks.withType<Javadoc>().configureEach {
 	}
 }
 
-tasks.withType<KotlinCompile> {
-	kotlinOptions {
-		freeCompilerArgs = listOf("-Xjsr305=strict")
-		jvmTarget = "21"
-	}
+configure<JavaPluginExtension> {
+	sourceCompatibility = JavaVersion.VERSION_21
+	targetCompatibility = JavaVersion.VERSION_21
 }
-
-
-
-
